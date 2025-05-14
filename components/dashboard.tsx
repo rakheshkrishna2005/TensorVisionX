@@ -154,7 +154,7 @@ export function Dashboard() {
 
           <section className="grid gap-6 lg:grid-cols-12">
             <div className="lg:col-span-8">
-              <Card className="bg-white dark:bg-gray-900 shadow-sm lg:h-full">
+              <Card className="bg-white dark:bg-gray-900 shadow-sm lg:h-full min-h-[400px]">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
@@ -162,9 +162,8 @@ export function Dashboard() {
                         variant="outline" 
                         className="inline-flex justify-center min-w-[200px] px-4 py-1.5 text-lg bg-violet-50 dark:bg-violet-900/20 text-violet-700 dark:text-violet-300 border-violet-200 dark:border-violet-800"
                       >
-                        <CardTitle className="text-lg font-medium">Object Detection</CardTitle>
+                        <CardTitle className="text-base md:text-lg font-medium">Object Detection</CardTitle>
                       </Badge>
-                      <p className="text-sm text-muted-foreground ml-3">Real-time object detection and monitoring</p>
                     </div>
                     <Badge
                       variant="outline"
@@ -187,11 +186,11 @@ export function Dashboard() {
                 </CardContent>
               </Card>
             </div>
-            <div className="lg:col-span-4 grid auto-rows-fr gap-6">
-              <Card className="bg-white dark:bg-gray-900 shadow-sm">
+            <div className="lg:col-span-4 grid gap-6">
+              <Card className="bg-white dark:bg-gray-900 shadow-sm min-h-[300px]">
                 <DetectionChart />
               </Card>
-              <Card className="bg-white dark:bg-gray-900 shadow-sm">
+              <Card className="bg-white dark:bg-gray-900 shadow-sm min-h-[300px]">
                 <DetectionHistoryChart detectionHistory={detectionHistory} />
               </Card>
             </div>

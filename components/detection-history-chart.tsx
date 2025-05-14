@@ -81,7 +81,7 @@ export function DetectionHistoryChart({ detectionHistory }: { detectionHistory: 
           Recent History
         </Badge>
       </CardHeader>
-      <CardContent className="flex-1 p-2 min-h-0">
+      <CardContent className="flex-1 p-2 min-h-[250px]">
         {chartData.length > 0 || isProcessing ? (
           <ChartContainer config={chartConfig} className="h-full">
             <ResponsiveContainer width="100%" height="100%">

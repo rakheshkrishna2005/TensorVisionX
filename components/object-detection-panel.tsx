@@ -5,7 +5,7 @@ import type React from "react"
 import { useEffect, useRef, useState } from "react"
 import * as cocoSsd from "@tensorflow-models/coco-ssd"
 import "@tensorflow/tfjs"
-import { Camera, Loader2, Video } from "lucide-react"
+import { Badge, Camera, Loader2, Video } from "lucide-react"
 import { useWebSocket } from "@/context/websocket-context"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -509,7 +509,7 @@ export function ObjectDetectionPanel({
           <div className="absolute inset-0 flex items-center justify-center rounded-md border border-dashed bg-gray-50 dark:bg-gray-800">
             <div className="flex flex-col items-center justify-center p-6">
               <Loader2 className="h-12 w-12 animate-spin text-primary mb-4" />
-              <p className="text-lg font-medium">Loading TensorFlow.js model...</p>
+              <p className="text-lg font-bold text-black-900">Provisioning Model</p>
               <p className="text-sm text-muted-foreground">This may take a moment</p>
             </div>
           </div>

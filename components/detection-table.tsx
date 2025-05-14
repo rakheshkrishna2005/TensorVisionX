@@ -93,10 +93,10 @@ export function DetectionTable() {
           <Table>
             <TableHeader>
               <TableRow className="hover:bg-transparent dark:text-blue-100 border-blue-900/20">
-                <TableHead className="text-center w-1/4 py-4">Class</TableHead>
-                <TableHead className="text-center w-1/4 py-4">Count</TableHead>
-                <TableHead className="text-center w-1/4 py-4">Percentage</TableHead>
-                <TableHead className="text-center w-1/4 py-4">Density</TableHead>
+                <TableHead className="text-center w-1/3 md:w-1/4 py-4">Class</TableHead>
+                <TableHead className="text-center w-1/3 md:w-1/4 py-4">Count</TableHead>
+                <TableHead className="text-center w-1/3 md:w-1/4 py-4">Percentage</TableHead>
+                <TableHead className="text-center hidden md:table-cell w-1/4 py-4">Density</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -129,7 +129,7 @@ export function DetectionTable() {
                       {item.percentage.toFixed(1)}%
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-center py-4">
+                  <TableCell className="text-center hidden md:table-cell py-4">
                     {getDensityBadge(item.percentage)}
                   </TableCell>
                 </TableRow>
