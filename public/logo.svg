@@ -1,0 +1,10 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Camera body -->
+  <rect x="4" y="8" width="24" height="16" rx="2" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="2"/>
+  <!-- Lens -->
+  <circle cx="16" cy="16" r="6" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="2"/>
+  <!-- Lens detail -->
+  <circle cx="16" cy="16" r="3" fill="currentColor" fillOpacity="0.4"/>
+  <!-- Flash -->
+  <rect x="20" y="10" width="4" height="2" rx="1" fill="currentColor"/>
+</svg>
