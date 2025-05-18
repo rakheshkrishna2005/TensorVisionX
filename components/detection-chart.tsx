@@ -1,21 +1,19 @@
 "use client"
 
 import { useWebSocket } from "@/context/websocket-context"
-import { CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Bar, BarChart, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
+import { CardContent, CardHeader } from "@/components/ui/card"
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts"
 import { ChartContainer } from "@/components/ui/chart"
 import { useState, useEffect } from "react"
 import { Badge } from "@/components/ui/badge"
 
-const CLASS_COLORS = {
-  person: "hsl(262, 83%, 58%)",    // Violet
-  car: "hsl(221, 83%, 53%)",       // Blue
-  truck: "hsl(142, 71%, 45%)",     // Emerald
-  dog: "hsl(346, 84%, 61%)",       // Rose
-  cat: "hsl(43, 96%, 58%)",        // Amber
-  bottle: "hsl(168, 76%, 42%)",    // Teal
-  default: "hsl(201, 96%, 58%)"    // Default blue
-}
+import { chartConfig as historyChartConfig } from "@/components/detection-history-chart"
+
+const CLASS_COLORS: Record<string, string> = Object.fromEntries(
+  Object.entries(historyChartConfig)
+    .filter(([key, value]) => key !== 'time')
+    .map(([key, value]) => [key, (value as any)?.color || "hsl(201, 96%, 58%)"])
+)
 
 interface ChartDataEntry {
   name: string;
@@ -27,6 +25,7 @@ export function DetectionChart() {
   const { objectCounts, isProcessing } = useWebSocket()
   const [animatedData, setAnimatedData] = useState<ChartDataEntry[]>([])
   const [targetData, setTargetData] = useState<ChartDataEntry[]>([])
+  const [totalCount, setTotalCount] = useState(0)
 
   useEffect(() => {
     const newData = Object.entries(objectCounts)
@@ -38,6 +37,8 @@ export function DetectionChart() {
       .sort((a, b) => b.value - a.value)
       .slice(0, 6)
 
+    const total = newData.reduce((sum, item) => sum + item.value, 0)
+    setTotalCount(total)
     setTargetData(newData)
   }, [objectCounts])
 
@@ -135,24 +136,21 @@ export function DetectionChart() {
         {animatedData.length > 0 || isProcessing ? (
           <ChartContainer config={chartConfig} className="h-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart 
-                data={animatedData} 
-                margin={{ top: 5, right: 10, left: 2, bottom: 10 }}
-              >
-                <XAxis 
-                  dataKey="name"
-                  fontSize={12} 
-                  tickLine={false} 
-                  axisLine={false}
-                  interval={0}
-                  padding={{ left: 10, right: 10 }}
-                />
-                <YAxis 
-                  fontSize={12} 
-                  tickLine={false} 
-                  axisLine={false}
-                  tickFormatter={(value) => Math.round(value).toString()}
-                />
+              <PieChart>
+                <Pie
+                  data={animatedData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  innerRadius="60%"
+                  outerRadius="80%"
+                  paddingAngle={2}
+                >
+                  {animatedData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                </Pie>
                 <Tooltip 
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
@@ -178,16 +176,25 @@ export function DetectionChart() {
                     return null
                   }}
                 />
-                <Bar 
-                  dataKey="value" 
-                  radius={[4, 4, 4, 4]}
-                  fillOpacity={0.8}
+                <text
+                  x="50%"
+                  y="50%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className="fill-current font-bold text-2xl"
                 >
-                  {animatedData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.fill} />
-                  ))}
-                </Bar>
-              </BarChart>
+                  {totalCount}
+                </text>
+                <text
+                  x="50%"
+                  y="60%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className="fill-current text-sm opacity-70"
+                >
+                  Objects
+                </text>
+              </PieChart>
             </ResponsiveContainer>
           </ChartContainer>
         ) : (

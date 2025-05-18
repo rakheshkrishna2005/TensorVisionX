@@ -7,6 +7,332 @@ import { CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useWebSocket } from "@/context/websocket-context"
 import { Badge } from "@/components/ui/badge"
 
+export const chartConfig: Record<string, any> = {
+  person: {
+    label: "Person",
+    color: "hsl(262, 83%, 58%)",
+  },
+  bicycle: {
+    label: "Bicycle",
+    color: "hsl(221, 83%, 53%)",
+  },
+  car: {
+    label: "Car",
+    color: "hsl(142, 71%, 45%)",
+  },
+  motorcycle: {
+    label: "Motorcycle",
+    color: "hsl(346, 84%, 61%)",
+  },
+  airplane: {
+    label: "Airplane",
+    color: "hsl(43, 96%, 58%)",
+  },
+  bus: {
+    label: "Bus",
+    color: "hsl(168, 76%, 42%)",
+  },
+  train: {
+    label: "Train",
+    color: "hsl(201, 96%, 58%)",
+  },
+  truck: {
+    label: "Truck",
+    color: "hsl(30, 100%, 50%)",
+  },
+  boat: {
+    label: "Boat",
+    color: "hsl(120, 100%, 25%)",
+  },
+  "traffic light": {
+    label: "Traffic Light",
+    color: "hsl(60, 100%, 50%)",
+  },
+  "fire hydrant": {
+    label: "Fire Hydrant",
+    color: "hsl(0, 100%, 50%)",
+  },
+  "stop sign": {
+    label: "Stop Sign",
+    color: "hsl(300, 100%, 25%)",
+  },
+  "parking meter": {
+    label: "Parking Meter",
+    color: "hsl(150, 100%, 25%)",
+  },
+  bench: {
+    label: "Bench",
+    color: "hsl(210, 100%, 25%)",
+  },
+  bird: {
+    label: "Bird",
+    color: "hsl(330, 100%, 25%)",
+  },
+  cat: {
+    label: "Cat",
+    color: "hsl(90, 100%, 25%)",
+  },
+  dog: {
+    label: "Dog",
+    color: "hsl(270, 100%, 25%)",
+  },
+  horse: {
+    label: "Horse",
+    color: "hsl(30, 100%, 25%)",
+  },
+  sheep: {
+    label: "Sheep",
+    color: "hsl(180, 100%, 25%)",
+  },
+  cow: {
+    label: "Cow",
+    color: "hsl(0, 100%, 25%)",
+  },
+  elephant: {
+    label: "Elephant",
+    color: "hsl(120, 100%, 25%)",
+  },
+  bear: {
+    label: "Bear",
+    color: "hsl(240, 100%, 25%)",
+  },
+  zebra: {
+    label: "Zebra",
+    color: "hsl(60, 100%, 25%)",
+  },
+  giraffe: {
+    label: "Giraffe",
+    color: "hsl(300, 100%, 25%)",
+  },
+  backpack: {
+    label: "Backpack",
+    color: "hsl(150, 100%, 25%)",
+  },
+  umbrella: {
+    label: "Umbrella",
+    color: "hsl(210, 100%, 25%)",
+  },
+  handbag: {
+    label: "Handbag",
+    color: "hsl(330, 100%, 25%)",
+  },
+  tie: {
+    label: "Tie",
+    color: "hsl(90, 100%, 25%)",
+  },
+  suitcase: {
+    label: "Suitcase",
+    color: "hsl(270, 100%, 25%)",
+  },
+  frisbee: {
+    label: "Frisbee",
+    color: "hsl(30, 100%, 25%)",
+  },
+  skis: {
+    label: "Skis",
+    color: "hsl(180, 100%, 25%)",
+  },
+  snowboard: {
+    label: "Snowboard",
+    color: "hsl(0, 100%, 25%)",
+  },
+  "sports ball": {
+    label: "Sports Ball",
+    color: "hsl(120, 100%, 25%)",
+  },
+  kite: {
+    label: "Kite",
+    color: "hsl(240, 100%, 25%)",
+  },
+  "baseball bat": {
+    label: "Baseball Bat",
+    color: "hsl(60, 100%, 25%)",
+  },
+  "baseball glove": {
+    label: "Baseball Glove",
+    color: "hsl(300, 100%, 25%)",
+  },
+  skateboard: {
+    label: "Skateboard",
+    color: "hsl(150, 100%, 25%)",
+  },
+  surfboard: {
+    label: "Surfboard",
+    color: "hsl(210, 100%, 25%)",
+  },
+  "tennis racket": {
+    label: "Tennis Racket",
+    color: "hsl(330, 100%, 25%)",
+  },
+  bottle: {
+    label: "Bottle",
+    color: "hsl(90, 100%, 25%)",
+  },
+  "wine glass": {
+    label: "Wine Glass",
+    color: "hsl(270, 100%, 25%)",
+  },
+  cup: {
+    label: "Cup",
+    color: "hsl(30, 100%, 25%)",
+  },
+  fork: {
+    label: "Fork",
+    color: "hsl(180, 100%, 25%)",
+  },
+  knife: {
+    label: "Knife",
+    color: "hsl(0, 100%, 25%)",
+  },
+  spoon: {
+    label: "Spoon",
+    color: "hsl(120, 100%, 25%)",
+  },
+  bowl: {
+    label: "Bowl",
+    color: "hsl(240, 100%, 25%)",
+  },
+  banana: {
+    label: "Banana",
+    color: "hsl(60, 100%, 25%)",
+  },
+  apple: {
+    label: "Apple",
+    color: "hsl(300, 100%, 25%)",
+  },
+  sandwich: {
+    label: "Sandwich",
+    color: "hsl(150, 100%, 25%)",
+  },
+  orange: {
+    label: "Orange",
+    color: "hsl(210, 100%, 25%)",
+  },
+  broccoli: {
+    label: "Broccoli",
+    color: "hsl(330, 100%, 25%)",
+  },
+  carrot: {
+    label: "Carrot",
+    color: "hsl(90, 100%, 25%)",
+  },
+  "hot dog": {
+    label: "Hot Dog",
+    color: "hsl(270, 100%, 25%)",
+  },
+  pizza: {
+    label: "Pizza",
+    color: "hsl(30, 100%, 25%)",
+  },
+  donut: {
+    label: "Donut",
+    color: "hsl(180, 100%, 25%)",
+  },
+  cake: {
+    label: "Cake",
+    color: "hsl(0, 100%, 25%)",
+  },
+  chair: {
+    label: "Chair",
+    color: "hsl(120, 100%, 25%)",
+  },
+  couch: {
+    label: "Couch",
+    color: "hsl(240, 100%, 25%)",
+  },
+  "potted plant": {
+    label: "Potted Plant",
+    color: "hsl(60, 100%, 25%)",
+  },
+  bed: {
+    label: "Bed",
+    color: "hsl(300, 100%, 25%)",
+  },
+  "dining table": {
+    label: "Dining Table",
+    color: "hsl(150, 100%, 25%)",
+  },
+  toilet: {
+    label: "Toilet",
+    color: "hsl(210, 100%, 25%)",
+  },
+  tv: {
+    label: "TV",
+    color: "hsl(330, 100%, 25%)",
+  },
+  laptop: {
+    label: "Laptop",
+    color: "hsl(90, 100%, 25%)",
+  },
+  mouse: {
+    label: "Mouse",
+    color: "hsl(270, 100%, 25%)",
+  },
+  remote: {
+    label: "Remote",
+    color: "hsl(30, 100%, 25%)",
+  },
+  keyboard: {
+    label: "Keyboard",
+    color: "hsl(180, 100%, 25%)",
+  },
+  "cell phone": {
+    label: "Cell Phone",
+    color: "hsl(0, 100%, 25%)",
+  },
+  microwave: {
+    label: "Microwave",
+    color: "hsl(120, 100%, 25%)",
+  },
+  oven: {
+    label: "Oven",
+    color: "hsl(240, 100%, 25%)",
+  },
+  toaster: {
+    label: "Toaster",
+    color: "hsl(60, 100%, 25%)",
+  },
+  sink: {
+    label: "Sink",
+    color: "hsl(300, 100%, 25%)",
+  },
+  refrigerator: {
+    label: "Refrigerator",
+    color: "hsl(150, 100%, 25%)",
+  },
+  book: {
+    label: "Book",
+    color: "hsl(210, 100%, 25%)",
+  },
+  clock: {
+    label: "Clock",
+    color: "hsl(330, 100%, 25%)",
+  },
+  vase: {
+    label: "Vase",
+    color: "hsl(90, 100%, 25%)",
+  },
+  scissors: {
+    label: "Scissors",
+    color: "hsl(270, 100%, 25%)",
+  },
+  "teddy bear": {
+    label: "Teddy Bear",
+    color: "hsl(30, 100%, 25%)",
+  },
+  "hair drier": {
+    label: "Hair Drier",
+    color: "hsl(180, 100%, 25%)",
+  },
+  toothbrush: {
+    label: "Toothbrush",
+    color: "hsl(0, 100%, 25%)",
+  },
+  time: {
+    label: "Time",
+  },
+}
+
 export function DetectionHistoryChart({ detectionHistory }: { detectionHistory: any[] }) {
   const [chartData, setChartData] = useState<any[]>([])
   const { isProcessing } = useWebSocket()
@@ -38,36 +364,6 @@ export function DetectionHistoryChart({ detectionHistory }: { detectionHistory: 
 
     setChartData(processedData)
   }, [detectionHistory])
-
-  const chartConfig: Record<string, any> = {
-    person: {
-      label: "Person",
-      color: "hsl(262, 83%, 58%)", // Violet
-    },
-    car: {
-      label: "Car",
-      color: "hsl(221, 83%, 53%)", // Blue
-    },
-    truck: {
-      label: "Truck",
-      color: "hsl(142, 71%, 45%)", // Emerald
-    },
-    dog: {
-      label: "Dog",
-      color: "hsl(346, 84%, 61%)", // Rose
-    },
-    cat: {
-      label: "Cat",
-      color: "hsl(43, 96%, 58%)", // Amber
-    },
-    bottle: {
-      label: "Bottle",
-      color: "hsl(168, 76%, 42%)", // Teal
-    },
-    time: {
-      label: "Time",
-    },
-  }
 
   const activeClasses = chartData.length > 0 ? Object.keys(chartData[0]).filter((key) => key !== "time") : []
 
