@@ -45,10 +45,10 @@
 
 ## 🏗️ System Architecture
 
-![Architecture Diagram](https://github.com/rakheshkrishna2005/TensorVisionX/blob/main/public/architecture.png)
+![Architecture Diagram](https://github.com/rakheshkrishna2005/TensorVisionX/blob/master/public/architecture.png)
 
 ## 📸 UI Snapshots
 
-![Auth](https://github.com/rakheshkrishna2005/TensorVisionX/blob/main/public/1.jpg)
-![Dashboard](https://github.com/rakheshkrishna2005/TensorVisionX/blob/main/public/2.png)
-![Detection Table](https://github.com/rakheshkrishna2005/TensorVisionX/blob/main/public/3.png)
+![Auth](https://github.com/rakheshkrishna2005/TensorVisionX/blob/master/public/1.jpg)
+![Dashboard](https://github.com/rakheshkrishna2005/TensorVisionX/blob/master/public/2.png)
+![Detection Table](https://github.com/rakheshkrishna2005/TensorVisionX/blob/master/public/3.png)
