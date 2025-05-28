@@ -118,7 +118,6 @@ export function Navbar({ selectedClasses, setSelectedClasses, allClasses, clearC
     </div>
   )
 
-  // Mobile menu component
   const MobileMenu = () => (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>

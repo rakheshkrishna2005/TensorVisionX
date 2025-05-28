@@ -156,7 +156,7 @@ export default function RegisterPage() {
         </Card>
 
         <div className="text-center">
-          <p className="text-xs text-gray-400">Secure authentication powered by Tensor Vision X</p>
+          <p className="text-xs text-gray-400">Secure authentication powered by JWT auth</p>
         </div>
       </div>
     </div>
