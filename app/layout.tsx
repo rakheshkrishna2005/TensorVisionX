@@ -9,7 +9,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'TensorVisionX',
+  title: 'Tensor Vision X',
   description: 'Real Time Object Detection And Monitoring Software'
 }
 

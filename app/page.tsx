@@ -1,9 +1,12 @@
-import { Dashboard } from "@/components/dashboard"
+import { getCurrentUser } from '@/lib/auth';
+import { redirect } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Dashboard />
-    </div>
-  )
+export default async function HomePage() {
+  const user = await getCurrentUser();
+
+  if (user) {
+    redirect('/dashboard');
+  } else {
+    redirect('/auth/login');
+  }
 }

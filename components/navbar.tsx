@@ -1,8 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { Moon, Sun, Trash2, RotateCw, Menu, X } from "lucide-react"
+import { Moon, Sun, Trash2, RotateCw, Menu, LogOut, Video } from "lucide-react"
 import { useTheme } from "next-themes"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -20,6 +21,32 @@ interface NavbarProps {
 export function Navbar({ selectedClasses, setSelectedClasses, allClasses, clearCache }: NavbarProps) {
   const { setTheme } = useTheme()
   const [open, setOpen] = useState(false)
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/auth/logout', {
+        method: 'POST',
+      })
+      
+      if (response.ok) {
+        router.push('/auth/login')
+        router.refresh()
+      } else {
+        toast({
+          title: "Logout failed",
+          variant: "destructive",
+        })
+      }
+    } catch (error) {
+      console.error('Logout error:', error)
+      toast({
+        title: "Logout failed",
+        description: "Please try again",
+        variant: "destructive",
+      })
+    }
+  }
 
   const handleClearCache = () => {
     clearCache()
@@ -79,6 +106,15 @@ export function Navbar({ selectedClasses, setSelectedClasses, allClasses, clearC
           <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <Button 
+        variant="outline" 
+        size="icon" 
+        onClick={handleLogout} 
+        title="Logout"
+      >
+        <LogOut className="h-4 w-4" />
+      </Button>
     </div>
   )
 
@@ -93,7 +129,7 @@ export function Navbar({ selectedClasses, setSelectedClasses, allClasses, clearC
       </SheetTrigger>
       <SheetContent side="right" className="w-[280px] sm:w-[350px]">
         <div className="flex flex-col h-full">
-          <div className="flex items-center border-b pb-4">
+          <div className="flex items-center justify-between border-b pb-4">
             <h2 className="text-lg font-semibold">Menu</h2>
           </div>
           
@@ -111,7 +147,7 @@ export function Navbar({ selectedClasses, setSelectedClasses, allClasses, clearC
             
             <div className="space-y-3">
               <h3 className="text-sm font-medium">Actions</h3>
-              <div className="flex gap-2">
+              <div className="flex gap-2 flex-wrap">
                 <Button variant="outline" size="icon" onClick={handleReloadApp} title="Reload application">
                   <RotateCw className="h-4 w-4" />
                 </Button>
@@ -131,6 +167,14 @@ export function Navbar({ selectedClasses, setSelectedClasses, allClasses, clearC
                     <DropdownMenuItem onClick={() => handleThemeChange("dark")}>Dark</DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  onClick={handleLogout} 
+                  title="Logout"
+                >
+                  <LogOut className="h-4 w-4" />
+                </Button>
               </div>
             </div>
           </div>
@@ -144,16 +188,11 @@ export function Navbar({ selectedClasses, setSelectedClasses, allClasses, clearC
       <div className="mx-auto flex h-16 items-center justify-between px-6 md:px-8">
         <div className="flex items-center gap-2">
           <div className="relative w-8 h-8">
-            <svg className="text-primary" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="4" y="8" width="24" height="16" rx="2" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="2"/>
-              <circle cx="16" cy="16" r="6" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="2"/>
-              <circle cx="16" cy="16" r="3" fill="currentColor" fillOpacity="0.4"/>
-              <rect x="20" y="10" width="4" height="2" rx="1" fill="currentColor"/>
-            </svg>
+            <Video className="absolute inset-0 w-full h-full" />
           </div>
           <h1 className="text-xl font-bold">
             <span className="text-black dark:text-white">Tensor</span>
-            <span className="text-red-600">VisionX</span>
+            <span className="text-red-600"> Vision X</span>
           </h1>
         </div>
 
