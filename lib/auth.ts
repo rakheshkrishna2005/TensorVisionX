@@ -1,21 +1,40 @@
-import jwt from 'jsonwebtoken';
+import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 
-const JWT_SECRET = process.env.JWT_SECRET!;
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!);
 
 export interface JWTPayload {
   userId: string;
   email: string;
   name: string;
+  [key: string]: string;
 }
 
-export function generateToken(payload: JWTPayload): string {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
+export async function generateToken(payload: JWTPayload): Promise<string> {
+  return await new SignJWT({
+    userId: payload.userId,
+    email: payload.email,
+    name: payload.name
+  })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setExpirationTime('7d')
+    .sign(JWT_SECRET);
 }
 
-export function verifyToken(token: string): JWTPayload | null {
+export async function verifyToken(token: string): Promise<JWTPayload | null> {
   try {
-    return jwt.verify(token, JWT_SECRET) as JWTPayload;
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+    const jwtPayload = payload as Record<string, string>;
+    
+    if (!jwtPayload.userId || !jwtPayload.email || !jwtPayload.name) {
+      return null;
+    }
+
+    return {
+      userId: jwtPayload.userId,
+      email: jwtPayload.email,
+      name: jwtPayload.name
+    };
   } catch (error) {
     return null;
   }
@@ -23,12 +42,12 @@ export function verifyToken(token: string): JWTPayload | null {
 
 export async function getCurrentUser(): Promise<JWTPayload | null> {
   try {
-    const cookieStore = await cookies();
+    const cookieStore = await cookies(); // Add await here
     const token = cookieStore.get('token')?.value;
 
     if (!token) return null;
 
-    return verifyToken(token);
+    return await verifyToken(token);
   } catch (error) {
     return null;
   }
