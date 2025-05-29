@@ -14,7 +14,7 @@
 | Layer      | Technologies                                               |
 |------------|----------------------------------------------------------|
 | 🧠 Computer Vision   | `TensorFlow.js`                         |
-| 🖥️ Frontend| `Next.js 14`, `TypeScript`, `TailwindCSS`, `shadcn/ui`    |
+| 🖥️ Frontend| `Next.js`, `TypeScript`, `TailwindCSS`, `shadcn/ui`    |
 | 🔒 Auth    | `JWT`, `HTTP-only Cookies`, `MongoDB`                     |
 | 📊 Charts  | `Recharts`, `Custom Canvas Rendering`                     |
 
@@ -45,7 +45,56 @@
 
 ## 🏗️ System Architecture
 
-![Architecture Diagram](https://github.com/rakheshkrishna2005/TensorVisionX/blob/master/public/architecture.png)
+```mermaid
+flowchart TD
+    Client["Client Browser"] --> Middleware["NextJS Middleware"]
+    Middleware --> Auth{"JWT Authentication"}
+
+    Auth -- Valid Token --> Dashboard["Dashboard Page"]
+    Auth -- Invalid Token --> Login["Login Page"]
+
+    Login -- Submit Credentials --> AuthAPI["Auth API"]
+    AuthAPI -- "Set HTTP-only Cookie" --> Dashboard
+
+    Dashboard --> ReactContextProvider["React Context API Provider"]
+
+    WebcamFeed["Webcam Feed"] --> ObjectDetection["Object Detection Panel"]
+    ImageUpload["Image Upload"] --> ObjectDetection
+    VideoUpload["Video Upload"] --> ObjectDetection
+
+    ObjectDetection --> TensorFlow["TensorFlow.js Model"]
+    TensorFlow --> Canvas["Canvas Rendering"] & Detection{"Object Detection"}
+
+    Detection --> ReactContextProvider
+
+    ReactContextProvider --> UpdateCounts["Update Object Counts"]
+    ReactContextProvider --> KPICards["KPI Cards"]
+    ReactContextProvider --> DetectionChart["Object Distribution Chart"]
+    ReactContextProvider --> HistoryChart["Detection History Chart"]
+    ReactContextProvider --> DetectionTable["Detection Table"]
+
+    UpdateCounts --> DetectionHistory["Detection History"]
+
+    KPICards --> TrackedObjects["Tracked Objects"]
+    KPICards --> FrameRate["Frame Rate"]
+    KPICards --> DetectedClasses["Detected Classes"]
+
+    AuthAPI --> MongoDB[("MongoDB")]
+
+    %% Class Assignments
+    class Auth,Login,AuthAPI auth
+    class WebcamFeed,ImageUpload,VideoUpload input
+    class ObjectDetection,TensorFlow,Canvas,Detection processing
+    class KPICards,TrackedObjects,FrameRate,DetectedClasses kpi
+    class DetectionChart,HistoryChart,DetectionTable visualization
+
+    %% Updated Class Definitions for Dark/Light Mode Visibility
+    classDef auth fill:#e0b3ff,stroke:#6a1b9a,color:#000,font-weight:bold
+    classDef input fill:#bbdefb,stroke:#1e88e5,color:#000,font-weight:bold
+    classDef processing fill:#c8e6c9,stroke:#388e3c,color:#000,font-weight:bold
+    classDef visualization fill:#fff59d,stroke:#fbc02d,color:#000,font-weight:bold
+    classDef kpi fill:#f8bbd0,stroke:#c2185b,color:#000,font-weight:bold
+```
 
 ## 📸 UI Snapshots
 
