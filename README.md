@@ -2,6 +2,14 @@
 
 🌐 [**Live Deployed Website**](https://tensor-vision-x.vercel.app/)
 
+## 📚 Table of Contents
+
+- [Key Features](https://github.com/rakheshkrishna2005/TensorVisionX?tab=readme-ov-file#-key-features)
+- [Tech Stack](https://github.com/rakheshkrishna2005/TensorVisionX?tab=readme-ov-file#️-tech-stack)
+- [Core Modules](https://github.com/rakheshkrishna2005/TensorVisionX?tab=readme-ov-file#-core-modules)
+- [System Architecture](https://github.com/rakheshkrishna2005/TensorVisionX?tab=readme-ov-file#️-system-architecture)
+- [UI Snapshots](https://github.com/rakheshkrishna2005/TensorVisionX?tab=readme-ov-file#-ui-snapshots)
+  
 ## 🚀 Key Features
 
 * 📸 **Real-Time Detection** — Powered by **TensorFlow.js** COCO-SSD model
