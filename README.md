@@ -1,6 +1,7 @@
 # 🎯 TensorVision X - Real-Time Object Detection Platform
 
-🌐 [**Live Deployed Website**](https://tensor-vision-x.vercel.app/)
+- 🌐 [**Live Deployed Website**](https://tensor-vision-x.vercel.app/)
+- 📺 [**TensorVisionX Web App Demo Video**](https://youtu.be/5M3eyTGb-W4)
 
 ## 📚 Table of Contents
 
